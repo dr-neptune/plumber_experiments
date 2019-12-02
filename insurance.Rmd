@@ -1,13 +1,14 @@
 ---
 title: "Insurance Data"
-output: 
+output:
   html_document:
      highlight: zenburn
      theme: lumen
      df_print: paged
      fig_align: center
      code_folding: hide
-     keep_md: yes
+  md_document:
+    variant: markdown_github
 ---
 
 ```{r, include=FALSE, echo=FALSE}
@@ -21,10 +22,15 @@ data(ausNLHYClaimByState)
 aus <- ausNLHYClaimByState %>%
     as_tibble()
 
+aus %>%
+    head()
+
 data(nzcathist)
 
 nz <- nzcathist %>%
     as_tibble()
+
+nz %>% head()
 ```
 
 ## For AUS data
