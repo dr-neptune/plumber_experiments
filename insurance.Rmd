@@ -8,7 +8,7 @@ output:
      fig_align: center
      code_folding: hide
   md_document:
-    variant: markdown_github
+    variant: gfm
 ---
 
 ```{r, include=FALSE, echo=FALSE}
@@ -23,14 +23,14 @@ aus <- ausNLHYClaimByState %>%
     as_tibble()
 
 aus %>%
-    head()
+    glimpse()
 
 data(nzcathist)
 
 nz <- nzcathist %>%
     as_tibble()
 
-nz %>% head()
+nz %>% glimpse()
 ```
 
 ## For AUS data
