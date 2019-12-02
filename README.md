@@ -90,8 +90,16 @@ nzcathist is a data frame of 9 columns:
 -   **FirstDayaDateobject** : for the first day of natural catastrophe.
 -   **Event** : character string describing the event.
 -   **Type** : factor describing the event type among the list:
-    “Cyclone” “Earthquake” “Flood” “Flood, Storm” “Hailstorm” “Other”
-    “Power outage” “Storm” “Tornado” “Weather”
+    -   “Cyclone”
+    -   “Earthquake”
+    -   “Flood”
+    -   “Flood, Storm”
+    -   “Hailstorm”
+    -   “Other”
+    -   “Power outage”
+    -   “Storm”
+    -   “Tornado”
+    -   “Weather”
 -   **Location** character string describing the location.
 -   **OriginalCostOriginal** cost in million of Australian dollars
     (NZD).
