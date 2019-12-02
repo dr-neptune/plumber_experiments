@@ -1,0 +1,86 @@
+```{r}
+library(httr)
+library(jsonlite)
+library(tidyverse)
+library(magrittr)
+library(purrr)
+```
+
+```{r}
+url <- "127.0.0.1:8000"
+
+get_api_png <- function(extension) {
+    GET(paste0(url, "/", extension)) %>%
+        content() %>%
+        grid::grid.raster()
+}
+
+get_api_tibble <- function(extension) {
+    GET(paste0(url, "/", extension)) %>%
+        .$content %>%
+        rawToChar() %>% 
+        fromJSON() %>%
+        as_tibble()
+}
+```
+
+# Examples 
+
+## Tables 
+
+```{r}
+# no parameter tables
+tables <- c("shapiro", "leverage", "outliers")
+
+tables %>%
+    map(., ~ get_api_tibble(.x)) %>%
+    set_names(tables) -> api_tables
+
+api_tables$leverage
+api_tables$outliers
+api_tables$shapiro
+```
+
+Predict requires 4 parameters:
+
+- verbal : [0, 10]
+- income : [0, 15]
+- status : [0, 100]
+- sex : [0, 1]
+
+```{r}
+# generate all combinations
+verbal <- 1:10
+income <- 1:15
+status <- 1:100
+sex <- 0:1
+
+# create dataframe with all combos
+expand.grid(verbal, income, status, sex) %>%
+    as_tibble() %>%
+    dplyr::rename("verbal" = Var1,
+                  "income" = Var2,
+                  "status" = Var3,
+                  "sex" = Var4) -> combos
+
+combos %<>%
+    rowwise() %>% 
+    mutate(api_string = paste0("predict?",
+                               "verbal=", verbal,
+                               "&income=", income,
+                               "&status=", status,
+                               "&sex=", sex)) %>%
+    mutate(prediction = get_api_tibble(api_string) %>%
+           flatten_dbl())
+
+combos
+
+get_api_tibble("predict?verbal=1&income=1&status=1&sex=0") %>% 
+    microbenchmark(times = 1000)
+```
+
+## Plots 
+
+```{r}
+
+```

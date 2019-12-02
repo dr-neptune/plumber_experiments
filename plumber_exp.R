@@ -30,7 +30,7 @@ function(sex, status, income, verbal) {
 
 #* Get Fitted vs Residual Diagnostic Plot
 #* @get /fitted_residual_plot
-#* @png
+#* @png (width = 800, height = 800) 
 function() {
     lm_aug %>%
         diag_plot(x = .fitted, y = .resid) -> p1
@@ -40,7 +40,7 @@ function() {
 
 #* Get Fitted vs Sqrt Abs Residual Diagnostic Plot
 #* @get /fitted_sqrt_abs_resid_plot
-#* @png
+#* @png (width = 800, height = 800) 
 function() {
     lm_aug %>%
         diag_plot(x = .fitted, y = sqrt(abs(.resid))) -> p1
@@ -50,7 +50,7 @@ function() {
 
 #* Get Normality Plot
 #* @get /normality
-#* @png
+#* @png (width = 800, height = 800) 
 function() {
     lm_aug %>%
         qq_plot(choice = .resid,
@@ -81,7 +81,7 @@ function() {
 }
 
 #* Generate large leverage point plots
-#* @png
+#* @png (width = 800, height = 800) 
 #* @get /leverage_plots
 function() {
     lmod %>%
@@ -99,7 +99,7 @@ function() {
 }
 
 #* Get influential points
-#* @png
+#* @png (width = 800, height = 800) 
 #* @get /influential_plot
 function() {
     lm_aug %>% 
@@ -111,7 +111,7 @@ function() {
 
 #* Get partial regression plots
 #* @param response_var The response variable
-#* @png
+#* @png (width = 800, height = 800) 
 #* @get /partial_regression_plots
 function(response_var) {
     tg %>%
@@ -121,7 +121,7 @@ function(response_var) {
 }
 
 #* Get partial residual plots
-#* @png
+#* @png (width = 800, height = 800) 
 #* @get /partial_residual_plots
 function() {
     lmod %>%
