@@ -10,12 +10,10 @@ output:
      keep_md: yes
 ---
 
-```{r, include=FALSE, echo=FALSE}
-library(CASdatasets)
-library(tidyverse)
-```
 
-```{r}
+
+
+```r
 data(ausNLHYClaimByState)
 
 aus <- ausNLHYClaimByState %>%
