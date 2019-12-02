@@ -4,6 +4,30 @@ data(ausNLHYClaimByState)
 aus <- ausNLHYClaimByState %>%
     as_tibble()
 
+data(nzcathist)
+
+nz <- nzcathist %>%
+    as_tibble()
+```
+
+## For AUS data
+
+  - **Class** : Class of business.
+  - **NSWACTYYYYMM** : New South Wales / Australian Capital Territory
+    for year YYYY.
+  - **VICYYYYMM** : Victoria in year YYYY reported onDate YYYYMM.
+  - **QLDYYYMM** : Queensland in year YYYY reported onDate YYYYMM.
+  - **SAYYYYMM** : South Australia in year YYYY reported onDate YYYYMM.
+  - **WAYYYYMM** : Western Australia in year YYYY reported onDate
+    YYYYMM.
+  - **TAYYYYMM** : Tasmania in year YYYY reported onDate YYYYMM.
+  - **NTYYYYMM** : Northern Territory in year YYYY reported onDate
+    YYYYMM.
+  - **TotalYYYYMM** : Total in year YYYY reported onDate YYYYMM.
+
+Data is in values of millions of Australian dollars (AUD)
+
+``` r
 aus %>%
     glimpse()
 ```
@@ -100,45 +124,6 @@ aus %>%
     ## $ Total200912  <dbl> 3734, 1457, 5401, 316, 1560, 352, 232, 96, 541, 346…
     ## $ Total201006  <dbl> 3417, 1471, 6196, 210, 1417, 324, 230, 88, 458, 368…
 
-``` r
-data(nzcathist)
-
-nz <- nzcathist %>%
-    as_tibble()
-
-nz %>% glimpse()
-```
-
-    ## Observations: 145
-    ## Variables: 10
-    ## $ Year         <dbl> 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2013, 201…
-    ## $ Quarter      <dbl> 4, 2, 2, 2, 1, 1, 1, 4, 3, 3, 3, 2, 2, 2, 4, 1, 1, …
-    ## $ Date         <chr> "5Oct", "25Jun", "9-11Jun", "17Apr", "15-16Mar", "2…
-    ## $ FirstDay     <date> 2014-10-05, 2014-06-25, 2014-06-09, 2014-04-17, 20…
-    ## $ Event        <fct> "Auckland Power Outage", "Nelson-Tasman Floods", "S…
-    ## $ Type         <fct> "Power outage", "Flood", "Weather", "Flood, Storm",…
-    ## $ Location     <fct> "Auckland", "Nelson, Tasman", "North and South Isla…
-    ## $ OriginalCost <dbl> 2.00, 2.70, 37.60, 55.30, 3.60, 4.80, 22.50, 12.40,…
-    ## $ NormCost2011 <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ NormCost2014 <dbl> 2.00, 2.72, 37.85, 55.67, 3.63, 4.84, 22.71, 12.56,…
-
-## For AUS data
-
-  - **Class** : Class of business.
-  - **NSWACTYYYYMM** : New South Wales / Australian Capital Territory
-    for year YYYY.
-  - **VICYYYYMM** : Victoria in year YYYY reported onDate YYYYMM.
-  - **QLDYYYMM** : Queensland in year YYYY reported onDate YYYYMM.
-  - **SAYYYYMM** : South Australia in year YYYY reported onDate YYYYMM.
-  - **WAYYYYMM** : Western Australia in year YYYY reported onDate
-    YYYYMM.
-  - **TAYYYYMM** : Tasmania in year YYYY reported onDate YYYYMM.
-  - **NTYYYYMM** : Northern Territory in year YYYY reported onDate
-    YYYYMM.
-  - **TotalYYYYMM** : Total in year YYYY reported onDate YYYYMM.
-
-Data is in values of millions of Australian dollars (AUD)
-
 ## For NZ data
 
 nzcathist is a data frame of 9 columns:
@@ -166,3 +151,22 @@ nzcathist is a data frame of 9 columns:
     (NZD).
   - **NormCost2014Normed** cost in million of 2014 New Zealand dollars
     (NZD)
+
+<!-- end list -->
+
+``` r
+nz %>% glimpse()
+```
+
+    ## Observations: 145
+    ## Variables: 10
+    ## $ Year         <dbl> 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2013, 201…
+    ## $ Quarter      <dbl> 4, 2, 2, 2, 1, 1, 1, 4, 3, 3, 3, 2, 2, 2, 4, 1, 1, …
+    ## $ Date         <chr> "5Oct", "25Jun", "9-11Jun", "17Apr", "15-16Mar", "2…
+    ## $ FirstDay     <date> 2014-10-05, 2014-06-25, 2014-06-09, 2014-04-17, 20…
+    ## $ Event        <fct> "Auckland Power Outage", "Nelson-Tasman Floods", "S…
+    ## $ Type         <fct> "Power outage", "Flood", "Weather", "Flood, Storm",…
+    ## $ Location     <fct> "Auckland", "Nelson, Tasman", "North and South Isla…
+    ## $ OriginalCost <dbl> 2.00, 2.70, 37.60, 55.30, 3.60, 4.80, 22.50, 12.40,…
+    ## $ NormCost2011 <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ NormCost2014 <dbl> 2.00, 2.72, 37.85, 55.67, 3.63, 4.84, 22.71, 12.56,…

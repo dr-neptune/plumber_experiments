@@ -22,15 +22,10 @@ data(ausNLHYClaimByState)
 aus <- ausNLHYClaimByState %>%
     as_tibble()
 
-aus %>%
-    glimpse()
-
 data(nzcathist)
 
 nz <- nzcathist %>%
     as_tibble()
-
-nz %>% glimpse()
 ```
 
 ## For AUS data
@@ -46,6 +41,11 @@ nz %>% glimpse()
 - **TotalYYYYMM** : Total in year YYYY reported onDate YYYYMM.
 
 Data is in values of millions of Australian dollars (AUD)
+
+```{r}
+aus %>%
+    glimpse()
+```
 
 ## For NZ data
 
@@ -71,3 +71,7 @@ nzcathist is a data frame of 9 columns:
 - **OriginalCostOriginal** cost in million of Australian dollars (NZD).
 - **NormCost2011Normed** cost in million of 2011 New Zealand dollars (NZD).
 - **NormCost2014Normed** cost in million of 2014 New Zealand dollars (NZD)
+
+```{r}
+nz %>% glimpse()
+```
