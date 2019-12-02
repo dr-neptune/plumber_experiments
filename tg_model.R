@@ -3,6 +3,13 @@ library(magrittr)
 library(broom)
 library(cowplot)
 
+data(nzcathist)
+
+nz <- nzcathist %>%
+    as_tibble()
+
+nz %>% glimpse()
+
 data(teengamb, package = "faraway")
 tg <- teengamb %>% as_tibble()
 lmod <- lm(gamble ~ ., tg)
