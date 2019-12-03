@@ -7,12 +7,13 @@ source("tg_model.R")
 #* Log some information about the incoming request
 #* @filter logger
 function(req){
-  cat(as.character(Sys.time()), "-", 
-      req$REQUEST_METHOD, req$PATH_INFO, "-", 
-      req$HTTP_USER_AGENT, "@", req$REMOTE_ADDR, "\n")
-  
-  # Forward the request
-  forward()
+    sink("log_file.txt")
+    cat(as.character(Sys.time()), "-", 
+        req$REQUEST_METHOD, req$PATH_INFO, "-", 
+        req$HTTP_USER_AGENT, "@", req$REMOTE_ADDR, "\n")
+    sink()
+    # Forward the request
+    forward()
 }
 
 #* Predict gamb values
@@ -22,10 +23,38 @@ function(req){
 #* @param verbal ??? of person [0, 10]
 #* @get /predict
 function(sex, status, income, verbal) {
-    predict(lmod, newdata = data.frame("sex" = as.numeric(sex),
-                                       "status" = as.numeric(status),
-                                       "income" = as.numeric(income),
-                                       "verbal" = as.numeric(verbal)))
+    sex <- as.numeric(sex)
+    status <- as.numeric(status)
+    income <- as.numeric(income)
+    verbal <- as.numeric(verbal)
+    
+    # catch out of range errors, return midpoint
+    if (!(between(sex, 0, 1))) {
+        cat("Warning : sex out of range. returning sex = 0\n")
+        sex <- 0
+    }
+
+    if (!(between(status, 0, 100))) {
+        cat("Warning : status out of range. Returning status = 50\n")
+        status <- 50
+    }
+
+    if (!(between(income, 0, 10))) {
+        cat("Warning : income out of range. Returning income = 5\n")
+        income <- 5
+    }
+
+    if (!(between(verbal, 0, 10))) {
+        cat("Warning : verbal out of range. Returning verbal = 5\n")
+        verbal <- 5
+    }
+    
+    pred <- predict(lmod, newdata = data.frame("sex" = sex,
+                                               "status" = status,
+                                               "income" = income,
+                                               "verbal" = verbal))
+
+    return(pred)
 }
 
 #* Get Fitted vs Residual Diagnostic Plot
